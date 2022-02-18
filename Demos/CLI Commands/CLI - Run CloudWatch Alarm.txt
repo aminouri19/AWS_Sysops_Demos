@@ -1,0 +1,1 @@
+aws cloudwatch set-alarm-state --alarm-name "testalarm" --state-value ALARM --state-reason "Demo Purposes"

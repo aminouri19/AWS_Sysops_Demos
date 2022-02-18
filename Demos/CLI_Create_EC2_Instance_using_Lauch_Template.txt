@@ -1,0 +1,12 @@
+                    Create an EC2 Instance Using LT
+
+View a list of all Launch Templates:
+aws ec2 describe-launch-templates
+
+Use LT to create an EC2 Instance
+aws ec2 run-instances --launch-template LaunchTemplateId=<LT ID> --instance-type <Instance Type>
+
+Example:
+aws ec2 run-instances --launch-template LaunchTemplateId=lt-0abcd290751193123 --instance-type t2.small
+
+

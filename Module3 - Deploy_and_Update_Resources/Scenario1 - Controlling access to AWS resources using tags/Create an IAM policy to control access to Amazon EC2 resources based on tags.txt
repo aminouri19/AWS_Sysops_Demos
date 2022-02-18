@@ -1,0 +1,51 @@
+Create an IAM policy to control access to Amazon EC2 resources based on tags
+
+Scenario:
+We want to allow developers that are working on project1 to
+have control over their own EC2 instances.
+
+1- Select your instance from the EC2 console
+
+2- In the Tags menu in the bottom pane, click Add/Edit tags and add "Team" as key and add "Project1" as value
+
+3- Open IAM and click Users and create a user called Jim and him to a new group called project1
+
+4- On the left click policies and then click "Create Policy"
+
+5- In the JSON tab, allow access to the EC2 console. Use describe statement for this purpose. 
+Copy the following code between "Statement"[].
+
+{
+	"Sid": "DescribeInstances",
+	"Effect": "Allow",
+	"Action": [
+		"ec2:Describe*"
+		],
+		"Resource": "*"
+}
+
+6- Add a new statement to allow Project1 team to control the ec2 instances for the project
+
+{
+	"Sid": "ControlingEC2instancesProject1",
+	"Effect": "Allow",
+	"Action": [
+		"ec2:RebootInstances",
+		"ec2:StartInstances",
+		"ec2:StopInstances"
+		],
+		"Resource": "*",
+		"Condition": {
+			"StringEquals": {
+				"ec2:ResourceTag/Team": "Project1"
+			}
+		}
+}
+
+7- Name the policy "EC2-Project1-Policy"
+
+8- Attach the policy to the project1 group by clicking on policy actions and selecting attach.
+
+9- If we sign in as the project1 member we can only perform operations that are assigned to this group.
+
+

@@ -1,0 +1,9 @@
+
+		Use Automation to install cloudwatch agent
+
+1-	Open Automation and hit execute automation
+2-	In the bottom of the list, select the following automation document
+*	AWS-ConfigureCloudWatchOnEC2Instance
+3-	Add the instance id of the instance and hit run
+
+Tip: The role attached to the instance must have "CloudWatchAgentServerPolicy" attached to send metrics to cloudwatch.

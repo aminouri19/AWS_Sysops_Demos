@@ -1,0 +1,17 @@
+AWS Config - Track Configuration Changes
+
+1- Open the Oregon region and Open AWS Config
+
+2- Show the process of enabling AWS Config
+
+3- Open California and show the resources that have been discovered
+
+4- Click on Security Groups discovered and view the compliance status
+
+5- Click resource timelines to show configuration history and change history
+
+6- Run advanced queries based on "EC2 instances status running"
+
+7- Run advanced queries for all rds instances that are publicly available
+* Select "Publicly accessible RDS DBinstances"
+

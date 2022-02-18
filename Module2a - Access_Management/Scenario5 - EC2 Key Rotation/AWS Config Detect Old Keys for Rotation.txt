@@ -1,0 +1,15 @@
+AWS Config Detect Old Keys for Rotation
+
+1- Open AWS config
+
+2- select rules
+
+3- hit "Add Rules"
+
+4- Select "access-keys-rotated" and hit next
+
+5- Specify "access-keys-rotated" and hit next
+
+6- Hit Add rule
+
+https://docs.aws.amazon.com/config/latest/developerguide/access-keys-rotated.html

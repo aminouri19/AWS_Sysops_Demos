@@ -1,0 +1,15 @@
+
+		Monitor Automation Process in CloudWatch
+
+1- Open cloud watch and select Metrics
+2- Under all metrics find SSM Run Command
+3- Click Across all commands
+4- Click commands succeeded to view the status of commands that ran
+5- If we want to get an alarm in case the command fails, click cloud watch alarms
+6- Click Create Alarm
+7- Click Select Metric
+8- Search for “Run Command” to see the “SSM Run Command”
+9- Select Commands Failed
+10- Under conditions, select Static Greater than or equal to 1 and click next
+11- Create a new SNS topic that will email you if the command fails
+12- Provide a name and create the Alarm

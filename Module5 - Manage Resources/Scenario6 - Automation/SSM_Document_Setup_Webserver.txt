@@ -1,0 +1,12 @@
+---
+schemaVersion: '2.2'
+mainSteps:
+- action: 'aws:runShellScript'
+  name: 'configureApache'
+  inputs:
+      runCommand:
+      - 'sudo yum update -y'
+      - 'sudo yum install -y httpd'
+      - 'sudo service httpd start'
+      - 'sudo chkconfig httpd on'
+      - 'sudo chkconfig httpd --add'

@@ -1,0 +1,24 @@
+View User data on EC2 instance
+curl http://169.254.169.254/latest/user-data
+
+Save Meta Data in a variable and view variable value - examples below
+
+export InstanceID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
+echo $InstanceID
+
+export mac=$(curl http://169.254.169.254/latest/meta-data/mac)
+echo $mac
+
+export publichostname=$(curl http://169.254.169.254/latest/meta-data/public-hostname)
+echo $publichostname
+
+export publicipv4=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
+echo $publicipv4
+
+export localhostname=$(curl http://169.254.169.254/latest/meta-data/local-hostname)
+echo $localhostname
+
+export localipv4=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)
+echo $localipv4
+
+

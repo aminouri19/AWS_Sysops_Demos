@@ -1,0 +1,7 @@
+Use SSM to install telnet on resources inside a RG
+
+1- Open SSM and select run command
+2- Look for "AWS-RunShellScript"
+3- Copy the following command in the "Command Parameters" section
+	* sudo yum install telnet -y
+4- Under targets, choose the "Servers-in-Asia" resource group and click run.

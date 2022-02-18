@@ -1,0 +1,26 @@
+Create ECR repository
+1- In AWS, search for ECR and provide a repository name for your ECR and hit create
+
+2- Copy the ECR URI for the next step
+
+3- Tag your Image - Use the URI at the end of the command
+docker tag hello-world <ECR URI>
+
+4- Use aws configure to enter your keys and login
+aws configure
+
+5- Copy the ECR URI and paste at the end of this command and run - You should see "login succeeded" at the end
+aws ecr get-login-password | docker login --username AWS --password-stdin <ECR URI>
+
+6- Push the image to ECR
+docker push <ECR URI>
+
+7- Open AWS ECS to create Fargate
+8- Create a Cluster
+9- Create a task defination and select Fargate
+10- Provide a name, resources and specify the container by using the image URI
+11- specify open port. If web server open port 80
+12- Click create and open the task defination
+13- open action and select run task
+14- Click the task and copy the public IP address for the web server and paste in browser
+

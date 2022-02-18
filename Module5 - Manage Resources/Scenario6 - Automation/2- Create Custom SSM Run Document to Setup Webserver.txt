@@ -1,0 +1,27 @@
+
+
+	Create Custom SSM Run Document to Setup Webserver
+
+1-	Open SSM, select documents from the left panel
+2-	Select the “Owned by me ” tab and click “Create Document”
+3-	Select Command or session
+4-	Give document a name (e.g. LinuxWebServers)
+5-	Scroll down to Content tab
+6-	Select Yaml
+7-	Edit Default text to following to setup a webserver
+
+---
+schemaVersion: "2.2"
+description: "Install and enable webserver on Amazon Linux2"
+parameters:
+mainSteps:
+- action: "aws:runShellScript"
+  name: "WebserverSetup"
+  inputs:
+    runCommand:
+    - "sudo yum install httpd -y"
+    - "sudo service httpd start"
+
+
+
+

@@ -1,0 +1,17 @@
+{
+  "Id": "Policy1625889582140",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "User Full S3 Access",
+      "Action": "s3:*",
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::111-report-am",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::511349353831:user/amin"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+
+		AWS Config Track Open SSH on SG's
+
+1- Open AWS Config
+2- Click on Rules to add rule
+3- Select "restricted-ssh" to check if any SG has unrestricted SSH access
+4- If your security group has access allowed from 0.0.0.0/0, you will be non-compliant
+5- Change the security group to have access from your IP address and it will be compliant
+
+Auto remediation
+1- Select the rule
+2- Under Actions, select "Manage Remediations"
+3- Under Choose Remediation Action, choose "AWS-DisableIncomingSSHonPort22"
+4- Save Changes

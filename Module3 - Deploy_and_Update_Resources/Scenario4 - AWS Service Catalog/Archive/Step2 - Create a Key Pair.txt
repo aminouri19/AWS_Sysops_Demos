@@ -1,0 +1,8 @@
+If you already have a key pair, just put the name of the key pair in
+the following section of the cloud formation template in step 1
+
+  "Parameters" : {
+    "KeyName": {
+      "Description" : "Name of an existing EC2 key pair for SSH access to the EC2 instance.",
+      "Type": "AWS::EC2::KeyPair::KeyName"
+    }

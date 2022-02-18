@@ -1,0 +1,8 @@
+netsh advfirewall consec add rule Name="aws-vgw Tunnel 1" ^
+Enable=Yes Profile=any Type=Static Mode=Tunnel ^
+LocalTunnelEndpoint=205.251.233.178 ^
+RemoteTunnelEndpoint=13.57.84.27 Endpoint1=192.168.189.0/24 ^
+Endpoint2=10.0.0.0/16 Protocol=Any Action=RequireInClearOut ^
+Auth1=ComputerPSK Auth1PSK=9xDMr2KAzK7Jz8zKiA2L8DikH5iRDHbA ^
+QMSecMethods=ESP:SHA1-AES128+60min+100000kb ^
+ExemptIPsecProtectedConnections=No ApplyAuthz=No QMPFS=dhgroup2

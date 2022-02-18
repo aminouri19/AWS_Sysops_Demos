@@ -1,0 +1,7 @@
+ Step 1:sudo yum update
+ step 2:sudo yum install wget
+ step 3:wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+ step 4:sudo rpm -ivh epel-release-latest-7.noarch.rpm
+ step 5:sudo yum install ansible
+ step 6:ansible --version
+ step 7:cd /etc/ansible

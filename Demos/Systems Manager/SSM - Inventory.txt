@@ -1,0 +1,16 @@
+          Create Application Inventory for EC2 instance
+
+1- Open SSM
+2- Under instances and Nodes, select "Inventory" link
+3- Click the "Setup Inventory" botton
+4- Provide a name like "Webserver Inventory"
+5- Manually select your EC2 instance
+6- Select all categories you want to include in your inventory
+7- Click "Setup Inventory"
+8- Click on view details in the green bar "setup inventory successfully"
+9- Click on "Apply Assocication Now"
+10- Status will now show as pending
+11- After the status changes to "Success", click the link
+12- Go to the "Resources" tab
+13- Click on "ResourceID"
+14- Click on "Invnetory" tab to view a list of applications installed on the instance.

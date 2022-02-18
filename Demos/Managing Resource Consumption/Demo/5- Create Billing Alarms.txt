@@ -1,0 +1,8 @@
+Create Billing Alarms
+
+1- Open CloudWatch
+2- Under Alarms click Billing
+3- Click "Create Alarms"
+4- Under condition specify the value that triggers the alarm and hit next
+5- Select an SNS topic to email you when it triggers
+6- Name the Alarm and create it.

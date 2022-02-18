@@ -1,0 +1,1 @@
+aws cloudformation create-stack --stack-name Ec2-Oregon --template-body file://Ec2-Oregon.yaml

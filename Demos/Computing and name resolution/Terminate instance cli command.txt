@@ -1,0 +1,1 @@
+aws autoscaling terminate-instance-in-auto-scaling-group --instance-id i-0650bcd79fb62c37e --should-decrement-desired-capacity

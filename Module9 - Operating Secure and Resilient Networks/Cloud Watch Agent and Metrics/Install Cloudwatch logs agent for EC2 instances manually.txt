@@ -1,0 +1,38 @@
+1- Create AWS Role using the following JSON policy document
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:DescribeLogStreams"
+    ],
+      "Resource": [
+        "*"
+    ]
+  }
+ ]
+}
+
+2- Attach role to EC2 instance
+3- log into the ec2 instance
+4- Run the following commands
+
+   - Update OS:                                 sudo yum update -y
+   - Install awslogs:                           sudo yum install -y awslogs
+   - Specify files logged in cloudwath:         /etc/awslogs/awslogs.conf
+   - Specify the region the logs will be saved: /etc/awslogs/awscli.conf to 
+   - Start the service:                         sudo systemctl start awslogsd
+   - Service remains active even after reboot:  sudo chkconfig awslogs on
+   - Enable service:                            sudo systemctl enable awslogsd.service
+
+5- Open cloudwatch
+6- Select logs and then log group
+7- Search for /var/log/messages
+
+
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/QuickStartEC2Instance.html

@@ -1,0 +1,14 @@
+https://acloudxpert.com/install-stress-utility-on-amazon-linux-2/
+
+sudo amazon-linux-extras install epel -y
+sudo yum install stress -y
+
+To use the stress command to push cpu to %100 use the following
+
+cd /usr/bin
+./stress --cpu 3
+
+The following command can push the cpu usage to %100 without the stress
+utility.
+
+for i in 1 2 3 4; do while : ; do : ; done & done

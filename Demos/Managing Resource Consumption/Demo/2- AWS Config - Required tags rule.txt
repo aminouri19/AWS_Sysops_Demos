@@ -1,0 +1,18 @@
+AWS Config Required Tags rule
+
+Add this rule to audit which resources are lacking a certain tag.
+
+For example we want to make sure all ec2 instances have an Department tag, and
+if they don't, we will audit using AWS config.
+
+1- Open AWS config
+2- Select rules and click "Add rule" 
+3- Select "AWS Managed Rules"
+4- Search for rule named "required-tags", select and hit next
+5- Give it a unique name
+6- Under "Trigger" select "AWS EC2 Instance" and remove the rest
+7- Under "Parameters", in front of "tag1Key", Place the key name you're looking for.
+In this case we're looking for "Department" key and remove the rest.
+8- Click add rule to start evaluation.
+
+

@@ -1,0 +1,6 @@
+
+1- Show how to create a Cloud formation template step by step
+2- Have a scenario on how to use ops works
+3- AMI Change policy and source control
+4- CLi based creating AMI's
+5- command to copy image to another region

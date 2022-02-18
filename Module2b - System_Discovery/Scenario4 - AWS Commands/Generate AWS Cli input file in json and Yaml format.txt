@@ -1,0 +1,17 @@
+Generate AWS Cli input file in json and Yaml format
+
+
+Create a Skeleton input file that can be used with AWS command line
+
+Example: To create a skeleton file to run instances with json and yaml format
+*	aws ec2 run-instances --generate-cli-skeleton > webserver.json
+*	aws ec2 run-instances --generate-cli-skeleton yaml-input > webserver.yaml
+
+Configure and use the skeleton file as an input for your AWS commands
+
+Example: Run an ec2 instance using an input file
+*	aws ec2 run-instances –-cli-input-json file://webserver.json 
+
+
+
+https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-skeleton.html

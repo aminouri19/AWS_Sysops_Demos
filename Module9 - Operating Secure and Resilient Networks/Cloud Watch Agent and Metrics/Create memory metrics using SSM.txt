@@ -1,0 +1,66 @@
+Setup memory metric for EC2 instance using SSM
+
+We will need to create config files to create memory metrics using SSM
+
+1- Open SSM, select Parameter Store and click create parameter
+2- Paste the following JSON code inside the "Value" box for linux
+
+{
+      "agent": {
+        "metrics_collection_interval": 60,
+        "logfile": "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log"
+      },
+"metrics": {
+    "metrics_collected": {
+      "mem": {
+        "measurement": [
+          {"name": "used", "rename": "MemoryUsed"},
+          {"name": "mem_available", "rename": "MemoryAvailable"}
+        ]
+        }
+      },
+    "append_dimensions": {
+      "InstanceId": "${aws:InstanceId}"
+    }
+  }
+}
+
+or use the following json for windows.
+
+{
+  "metrics": {
+    "namespace": "Windows System",
+    "append_dimensions": {
+      "InstanceId": "${aws:InstanceId}"
+    },
+    "aggregation_dimensions" : [ ["InstanceId"] ],
+    "metrics_collected": {
+      "Memory": {
+        "measurement": [
+          {"name": "% Committed Bytes In Use", "rename": "MemoryUsed", "unit": "Bytes"},
+          {"name" : "Available Bytes", "rename": "MemoryAvailable", "unit": "Bytes"}
+        ],
+        "metrics_collection_interval": 60
+      },
+      "Paging File": {
+        "measurement": [
+          {"name": "% Usage", "rename": "paging_used"}
+        ],
+        "metrics_collection_interval": 60,
+        "resources": [
+          "*"
+        ]
+      }
+    }
+  }
+}
+
+3- In the name section enter "AmazonCloudWatch-LinuxConfig" or "AmazonCloudWatch-WindowsConfig"
+4- Hit create parameter
+5- Click SSM run command
+6- Choose "AmazonCloudWatch-ManageAgent" document
+7- Under command parameters, in the "Optional Configuration Location",
+ enter the name of the config file you created in parameter store.(e.g. "AmazonCloudWatch-LinuxConfig")
+8- Choose your instance manually and click run
+9- Open CloudWatch and select Metrics
+10- The "CWagent" namespace has been created for linux and "Windows System" namespace has been created for Windows.

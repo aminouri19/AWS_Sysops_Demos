@@ -1,0 +1,53 @@
+AWS Cli Commands, Setting up the Infrastructure
+
+Create VPC’s
+1- Create a VPC
+aws ec2 create-vpc --cidr-block 10.0.0.0/16
+
+2- Lookup VPC Ids and Subnets
+aws ec2 describe-vpcs --query "Vpcs[].{ID:VpcId,Block:CidrBlock}"
+
+
+Create Subnets
+3- Create a subnet
+aws ec2 create-subnet --vpc-id vpc-0230d22981d7221e7 --cidr-block 10.0.0.0/24
+
+4- Query subnets with Cidr Blocks and Id’s
+aws ec2 describe-subnets --query Subnets[].{ID:SubnetId,Tags:Tags,Block:CidrBlock}
+
+
+Create Route Tables
+5- Create route table 
+aws ec2 create-route-table --vpc-id vpc-0230d22981d7221e7
+
+6- Lookup Route ID and Subnet and Tag
+aws ec2 describe-route-tables --query RouteTables[].{ID:RouteTableId,Routes:"Routes[].DestinationCidrBlock",Tags:Tags}Associate Route table to subnet
+
+7- Associate Route Table to Subnet
+aws ec2 associate-route-table --route-table-id rtb-0101aeba518a927aa --subnet-id subnet-0b97de1ceb13032b2
+
+
+Create Internet gateway
+8- Query a list of Internet Gateways
+aws ec2 describe-internet-gateways --query InternetGateways[].{ID:InternetGatewayId,Tags:Tags}
+
+9- Create Internet Gateway
+aws ec2 create-internet-gateway
+
+10- Attach gateway to VPC
+aws ec2 attach-internet-gateway --internet-gateway-id igw-069f1b621d0ee6462 --vpc-id vpc-0230d22981d7221e7
+
+
+Add Route Table Entry
+11- Add routing table
+aws ec2 create-route --route-table-id rtb-0101aeba518a927aa --destination-cidr-block 0.0.0.0/0 --gateway-id igw-069f1b621d0ee6462
+
+
+Create Security Group
+12- Create security group
+aws ec2 create-security-group --group-name MySecurityGroup --description "My security group" --vpc-id vpc-0230d22981d7221e7
+
+
+Create EC2 Instance
+13- Create Ec2 Instance
+aws ec2 run-instances --image-id ami-0f3a15fc18df9c6e4 --count 1 --instance-type t2.micro --key-name Ncalifornia-Key --security-group-ids sg-043901be8eba35358 --subnet-id subnet-0b97de1ceb13032b2

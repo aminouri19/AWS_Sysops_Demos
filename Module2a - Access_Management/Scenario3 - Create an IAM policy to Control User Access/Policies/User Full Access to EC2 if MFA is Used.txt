@@ -1,0 +1,19 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "MFA-Access",
+            "Effect": "Allow",
+            "Action": "ec2:*",
+            "Resource": "*",
+            "Condition": {
+                "BoolIfExists": {
+                    "aws:MultiFactorAuthPresent": "true"
+                },
+                "IpAddress": {
+                    "aws:SourceIp": "1.2.3.4/32"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+Create Cloudwatch Dashboard
+
+1- Open CloudWatch and click Dashboards
+2- Click Create dashboard and provide name
+3- Select "Line" widget type
+4- Select "Metrics" and click "Configure"
+5- Under "All Metrics" select EC2
+6- Select "Per Instance Metrics" and select "CPU Utilization" for your instance and select "Create Widget".
+7- Select "CWagents" and select the memory and disk metrics and select "Create Widget".
+8- Save dashboard.

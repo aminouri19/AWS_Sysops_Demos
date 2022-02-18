@@ -1,0 +1,7 @@
+Install Cloud watch agent for Amazon Linux 2 instance
+
+1- Create Role inclucding the following policies
+   * "CloudWatchAgentServerPolicy"
+2- Apply role to instances
+3- Install Cloud Watch agent using the following command
+sudo yum install amazon-cloudwatch-agent

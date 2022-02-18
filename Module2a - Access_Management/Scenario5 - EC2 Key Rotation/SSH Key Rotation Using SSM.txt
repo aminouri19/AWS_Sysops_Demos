@@ -1,0 +1,27 @@
+SSH Key Rotation Using SSM
+
+1- Create a new key and download
+*	Open EC2 Console
+*	Under Network & Security Select "Key Pairs"
+*	Create new keypair and download private key
+
+2- Create Public key using your private key
+*	ssh-keygen -y -f Oregon-Key.pem > Oregon-Key.pub
+
+3- Use SSM to add key to all instances
+*	Open SSM
+*	Under Instances and Nodes, select "Run Command"
+*	On the right pane search for "AWS-RunShellScript"
+*	run cat Oregon-key.pub and copy the "Public Key Code"
+*	Under "Command paramaters", enter the following command
+
+#!/bin/bash
+cp ~/.shh/authorized_keys ~/.shh/authorized_keys.bak
+rm ~/.shh/authorized_keys
+echo -e "Public Key Code" > ~/.shh/authorized_keys
+
+*	Under targets, select your EC2 instances
+*	Click Run
+*	Login to instances using new key
+
+https://www.youtube.com/watch?v=sU-RWxzHrww

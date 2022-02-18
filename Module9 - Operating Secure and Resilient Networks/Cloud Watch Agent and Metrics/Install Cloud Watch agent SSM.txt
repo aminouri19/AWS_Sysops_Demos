@@ -1,0 +1,17 @@
+Install cloud watch agent using SSM
+
+1- Create Role inclucding the following policies
+  * "AmazonSSMManagedInstanceCore" 
+  * "CloudWatchAgentServerPolicy"
+2- Apply role to instances
+3- Open SSM Run command
+4- Use command document AWS-ConfigureAWSPackage
+5- Under Command Parameters name use "AmazonCloudWatchAgent"
+6- Specify targets and run
+
+
+
+
+
+
+

@@ -1,0 +1,1 @@
+aws ec2 modify-instance-attribute --instance-type m5.xlarge

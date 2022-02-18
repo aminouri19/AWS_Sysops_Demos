@@ -1,0 +1,14 @@
+		
+
+		Install CloudWatch Agent Using SSM Run Command
+
+1- Open SSM
+2- Choose "Run Command"
+3- Click "Run Command" button
+4- Search for "AWS-ConfigureAWSPackage"
+5- In the "Command Parameters" box, under "Action" select "Install"
+6- In the "Name" box enter "AmazonCloudWatchAgent"
+7- In the version box, enter "Latest"
+8- Choose run
+
+Tip: The role attached to the instance must have "CloudWatchAgentServerPolicy" attached to send metrics to cloudwatch.

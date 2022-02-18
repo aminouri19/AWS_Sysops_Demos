@@ -1,0 +1,8 @@
+---
+schemaVersion: '2.2'
+mainSteps:
+- action: 'aws:runShellScript'
+  name: 'configureApache'
+  inputs:
+      runCommand:
+      - 'sudo bash -c "echo Hello World from $(hostname -f) > /var/www/html/index.html"'

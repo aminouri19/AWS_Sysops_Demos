@@ -1,0 +1,45 @@
+1- Launch EC2 instance
+2- Update your instance 
+   sudo yum update -y
+3- Install Docker
+   sudo amazon-linux-extras install docker
+4- Start the service
+   sudo service docker start
+5-Add the ec2-user to the docker group so you can execute Docker commands without using sudo
+   sudo usermod -a -G docker ec2-user
+6-Verify that the ec2-user can run Docker commands without sudo
+   docker info
+7-Create a file called Dockerfile
+   touch Dockerfile
+8-Edit the docker file using the following content
+
+FROM ubuntu:18.04
+
+# Install dependencies and Install Apache
+RUN apt-get update && \
+ apt-get -y install apache2
+
+# Write hello world message in index.html
+RUN echo 'Hello World from Docker!' > /var/www/html/index.html
+
+# Configure apache
+RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh && \
+ echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh && \
+ echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh && \ 
+ echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh && \ 
+ chmod 755 /root/run_apache.sh
+
+EXPOSE 80
+
+CMD /root/run_apache.sh
+
+9- Build the Docker image from your Dockerfile.
+docker build -t hello-world .
+
+10-Run docker images to verify that the image was created correctly.
+docker images --filter reference=hello-world
+
+11-Run the newly built image on port 80
+docker run -t -i -p 80:80 hello-world
+
+12-Paste the public IP address to your browser to view the web content

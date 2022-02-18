@@ -1,0 +1,29 @@
+---
+- name: Create a new Demo EC2 instance
+  hosts: localhost
+  gather_facts: False
+
+  vars:
+      region: us-west-1
+      instance_type: t2.nano
+      ami: ami-0f3a15fc18df9c6e4  # Webserver V2
+      keypair: Ncalifornia-Key # pem file name
+  
+  tasks:
+
+    - name: Create an ec2 instance
+      ec2:
+         key_name: "{{ keypair }}"
+         group: SSH_SG  # security group name
+         instance_type: "{{ instance_type}}"
+         image: "{{ ami }}"
+         wait: true
+         region: "{{ region }}"
+         count: 1  # default
+         count_tag:
+            Name: Demo Ansible
+         instance_tags:
+            Name: Demo Ansible
+         vpc_subnet_id: subnet-0b97de1ceb13032b2
+         assign_public_ip: yes
+      register: ec2

@@ -1,0 +1,16 @@
+{
+   "Version": "2012-10-17",
+   "Statement": [{
+      "Effect":"Allow",
+      "Action":["ec2:*"],
+      "Resource":"*"
+    },
+    {
+      "Effect":"Allow",
+      "Action":"iam:PassRole",
+      "Resource":"arn:aws:iam::123456789012:role/S3FullAccess"
+    }]
+}
+
+
+Ref: https://aws.amazon.com/blogs/security/granting-permission-to-launch-ec2-instances-with-iam-roles-passrole-permission/

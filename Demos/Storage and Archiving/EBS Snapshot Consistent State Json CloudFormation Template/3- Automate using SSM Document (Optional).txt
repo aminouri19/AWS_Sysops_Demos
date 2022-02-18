@@ -1,0 +1,42 @@
+Manually create a maintenance window:
+
+1.In the Amazon EC2 console , choose Systems Manager Shared Resources , Maintenance Windows, Create a Maintenance Window.
+
+2.For Name, enter ConsistentSnapshots.
+
+3.For Specify with, choose CRON/Rate expression.For CRON/Rate expression, enter cron(0 0 * * ? *) in. This creates consistent EBS snapshots every day at midnight UTC.
+
+4.For Duration , enter 2 hours. For Stop initiating tasks , enter 0 hour.
+
+5.Choose Create maintenance window. The system returns you to the Maintenance Window page.
+
+
+
+After you create a maintenance window, assign a target where the task will run:
+
+1.In the Maintenance Window list, select the maintenance window that you just created.
+
+2.For Actions, choose Register targetsn.
+
+3.For Owner information, enter AmazonLinuxMySQL.
+
+4.Under Select targets by section, choose Specifying tags. For Tag Name, choose ConsistentSnapshot. For Tag Value, choose AmazonLinuxMySQL.
+
+5.Choose Register targets.
+
+
+
+Finally, assign a task to perform during the window:
+1.In the Maintenance Window list, select the maintenance window that you just created.
+
+2.For Actions, choose Register tasks.
+
+3.For Document, select the SSM document that was returned by CloudFormation.
+
+4. Under the Target by section, select the target that you just created.
+
+5.Under the Role section, select the IAM role that was returned by CloudFormation.
+
+6.Under the Execute on section, for Targets, enter 1. For Stop after, enter 1 errors. You can adapt thesenumbers to your own needs.
+
+7.Choose Register task.

@@ -1,0 +1,1 @@
+AWS ec2 create-snapshot --volume-id vol-123456 --description "EC2 snapshot"

@@ -1,0 +1,24 @@
+To create custom memory metric for your EC2 instance follow the process below.
+
+1- Create an EC2 instance
+2- Use AWS Configure to authenticate to AWS (Or create role with policy called CloudWatchAgentServerPolicy to update cloudwatch)
+3- Create a script that can discover free memory and upload to cloud watch
+
+#!/bin/bash
+MemTotal=$(cat /proc/meminfo | grep MemTotal | awk -F" " '{print $2}')
+MemFree=$(cat /proc/meminfo | grep MemFree | awk -F" " '{print $2}')
+aws cloudwatch put-metric-data --metric-name Total-Memory --dimensions instance=i-02539b80849833ca8 --namespace "Custom" --value $MemTotal
+aws cloudwatch put-metric-data --metric-name Free-Memory --dimensions instance=i-02539b80849833ca8 --namespace "Custom" --value $MemFree
+
+4- Assign execute permission to script
+ - sudo chmod +x custom-metrics
+5- Run script
+ - ./custom-metrics
+6- Configure crontab to automatically run the script every minute
+ - crontab -e
+ - */1 * * * * /home/ec2-user/mem.sh
+7- Open Cloudwatch and select Metrics
+8- Click on the new namespace called "Custom" to see the metrics
+
+
+

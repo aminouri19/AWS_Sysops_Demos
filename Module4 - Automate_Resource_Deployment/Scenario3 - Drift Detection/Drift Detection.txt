@@ -1,0 +1,9 @@
+1- After the EC2 instance was deployed using cloud formation, change the instance type
+
+2- Open Cloudformation select the stack, under stack action select detect drift
+
+3- In the first tab called "Stack info", it will show drifted
+
+4- Open the "Stack Actions" menu and select "View Drift Results"
+
+5- Select the resource and click "View drift Details"

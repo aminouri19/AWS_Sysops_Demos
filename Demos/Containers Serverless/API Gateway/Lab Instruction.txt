@@ -1,0 +1,30 @@
+                                    API Gateway Demo
+
+Create Role:
+Create Role named "Lambda-Basic-Execution-Role" that has a policy named 
+AWSLambdaBasicExecutionRole
+
+Create Function:
+Create function using Nodejs 12.x that assumes the role above. The Nodejs
+code is in another file named "Lambda Nodejs 12.x FAQ code.txt"
+
+Open Function:
+Open Function and paste code. Save and delpoy code. This code contains
+many QandA's for Lambda. Eventually when the code runs it returns a QA
+randomly.
+
+Edit basic settings and in the description section type "Provide a random FAQ".
+
+Create an API Gateway:
+On the top of the lambda function page, in the designer section click "Add Trigger".
+Select "API Gateway", and select "Create an API". Select "Rest API", with Open security.
+Under additional settings specify the Deployment stage as "Production" and click "Add".
+
+In the new window we can see the new API gateway. Under the details section, copy the 
+"API endpoint" URL and paste it inside your browser to trigger your function and randomly
+see a QandA as the result.
+
+
+
+
+

@@ -1,0 +1,47 @@
+Permission Boundary
+
+1- Create a permission boundary policy
+
+2- Open IAM and select policies. Click create new policy
+
+3- In the JSON tab paste the following to allow cloudwatch and EC2 access
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:*",
+                "ec2:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+4- Save as boundary1-policy
+
+5- Open IAM and create a user with admin access
+
+6- login to an ec2 instance and create a profile for that user
+*	aws configure --profile sam
+*	export AWS_DEFAULT_PROFILE=sam
+
+7- Run the following command to see all s3 buckets
+*	aws s3 ls
+
+8- Open IAM and click on the user sam
+
+9- In the permissions tab click "Permissions Boundary"
+
+10- Click Set boundary and select the Boundary policy created earlier
+
+11- Return to the ec2 console and run the "aws s3 ls" command again
+
+12- You should recieve a permission denied error.
+
+13- Delete the permission boundary and try again. This time you should
+be able to run the "aws s3 ls" command successfully.
+
+Ref: https://www.youtube.com/watch?v=vxYtdNhXmxQ

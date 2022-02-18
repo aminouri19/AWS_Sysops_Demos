@@ -1,0 +1,18 @@
+Service Catalog
+
+1- Create a portfolio and call it Project1 Portfolio
+
+2- Create a product by clickiing on "Upload New Product"
+
+3- Specify Product name and upload a cloud formation template
+
+4- Create a group for users using the portfolio and give them the "AWSServiceCatalogEndUserFullAccess" permission.
+
+5- Create a group for the service catalog administrators and give them the "AWSServiceCatalogAdminFullAccess" permission.
+
+6- Open the prtfolio and under the "Group, Roles and Users" tab add the admin and user groups
+
+7- Users can open Service Catalog and click "Products" to see the products.
+
+8- Select the product and click "Launch Product".
+

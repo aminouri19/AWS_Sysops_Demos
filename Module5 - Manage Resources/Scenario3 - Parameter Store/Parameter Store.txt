@@ -1,0 +1,14 @@
+Store a password in parameter store and call it pass1
+
+Use the following command to view the parameters
+*	aws ssm get-parameters --name "pass1" --region us-west-1
+
+Use the following command to retreive the value
+*	aws ssm get-parameters --name "pass1" --query Parameters[*].Value --output text --region us-west-1
+
+Use the following command to retreive the unencrypted password value
+*	aws ssm get-parameters --name "pass1" --query Parameters[*].Value --output text --region us-west-1 --with-decryption
+
+Store user data in parameter store and retreive the value using the following command.
+*	aws ssm get-parameters --name "pass1" --query Parameters[*].Value --output text --region us-west-1
+*	aws ssm get-parameters --names /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 --region us-east-1

@@ -1,0 +1,39 @@
+Install CloudWatch Log Agent
+
+1- Create policy and name it "CloudWatch-Logs-Policy" using the following JSON code
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:DescribeLogStreams"
+    ],
+      "Resource": [
+        "*"
+    ]
+  }
+ ]
+}
+
+2- Attach this policy to current EC2 instance role.
+3- Run the following commands
+
+   - Update OS:                                 sudo yum update -y
+   - Install awslogs:                           sudo yum install -y awslogs
+   - Specify files logged in cloudwath:         /etc/awslogs/awslogs.conf
+   - Specify the region the logs will be saved: /etc/awslogs/awscli.conf 
+   - Start the service:                         sudo systemctl start awslogsd
+   - Service remains active even after reboot:  sudo chkconfig awslogsd on
+   - Enable service:                            sudo systemctl enable awslogsd.service
+4- Open cloudwatch and select dashboard
+5- Click "Add Widget"
+6- Select "Line" and hit next
+7- Select Logs and hit configure
+8- In the logs group box search for /var/log/messages and hit create widget.
+
+

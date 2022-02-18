@@ -1,0 +1,12 @@
+#!/bin/sh
+cd /tmp
+sudo yum install -y https://s3.us-west-1b.amazonaws.com/amazon-ssm-us-west-1b/latest/linux_amd64/amazon-ssm-agent.rpm
+yum install -y amazon-ssm-agent.rpm
+yum install -y mysql-server
+chkconfig mysqld on
+service mysqld start
+mysqladmin -u root password dummypassword
+mysqladmin -u root --password=dummypassword create mydatabase
+mysql -u root --password=dummypassword -h localhost -e \"CREATE USER 'backup'@'localhost';\"
+mysql -u root --password=dummypassword -h localhost -e \"GRANT RELOAD ON *.* TO 'backup'@'localhost';\"
+/opt/aws/bin/cfn-signal -e 0 --stack

@@ -1,0 +1,11 @@
+
+1- Create 3 new EC2 instances
+2- Start tagging in the EC2 Console and the CLI
+3- Use AWS config "Required-Tags" rule to check complaince
+4- Create Resource Groups
+5- Query resources using the CLI
+6- Show how resource groups can be used (e.g. starting up the instance using tags)
+7- Useful scripts for cost saving
+8- Show trusted advisor
+9- Detect unused resources in the cloud and eliminate for cost saving
+10- Show how to create a billing alarm

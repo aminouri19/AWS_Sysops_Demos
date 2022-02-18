@@ -1,0 +1,37 @@
+Create Custom Memory Metric
+
+1- Create an IAM role with the following policies to support SSM amd CloudWatch access
+  * "AmazonSSMManagedInstanceCore" 
+  * "CloudWatchAgentServerPolicy"
+2- Attach role to your EC2 instance
+3- Open SSM, select Parameter Store and click create parameter
+4- Paste the following JSON code inside the "Value" box for linux
+
+{
+      "agent": {
+        "metrics_collection_interval": 60,
+        "logfile": "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log"
+      },
+"metrics": {
+    "metrics_collected": {
+      "mem": {
+        "measurement": [
+          {"name": "used", "rename": "MemoryUsed"},
+          {"name": "mem_available", "rename": "MemoryAvailable"}
+        ]
+        }
+      },
+    "append_dimensions": {
+      "InstanceId": "${aws:InstanceId}"
+    }
+  }
+}
+
+5- In the name section enter "AmazonCloudWatch-LinuxConfig" 
+6- Hit create parameter
+7- Click SSM run command
+8- Choose "AmazonCloudWatch-ManageAgent" document
+9- Under command parameters, in the "Optional Configuration Location", enter AmazonCloudWatch-LinuxConfig
+10- Choose your instance manually and click run
+11- Open CloudWatch and select Metrics
+12- The "CWagent" namespace has been created.

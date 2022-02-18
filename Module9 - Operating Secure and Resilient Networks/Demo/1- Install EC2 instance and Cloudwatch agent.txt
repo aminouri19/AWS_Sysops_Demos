@@ -1,0 +1,7 @@
+Install Ec2 instance and Cloudwatch log
+
+1- aws ec2 run-instances --image-id ami-0f3a15fc18df9c6e4 --count 1 --instance-type t2.micro --key-name Ncalifornia-Key --security-group-ids sg-edbc5598 --subnet-id subnet-ddcd3687 --user-data "sudo yum install amazon-cloudwatch-agent"
+2- Login to instance using ec2-user
+3- Verify the agent was installed using the following command
+   * sudo yum search amazon-cloudwatch-agent
+4- Select instance and view CPU metrics in the monitoring tab

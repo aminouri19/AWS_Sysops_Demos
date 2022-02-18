@@ -1,0 +1,2 @@
+aws ec2 run-instances --image-id ami-013a129d325529d4d --instance-type t2.micro --key-name Oregon-Key --security-group-ids sg-03341d9f60e052067
+

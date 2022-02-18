@@ -1,0 +1,20 @@
+                  Install telnet on your EC2 instance
+
+1- Open SSM
+2- Under instances and Nodes, select "Run Command" link
+3- Click the "Run Command" button on new page
+4- Search for "AWS-RunShellScript" and select the option
+5- Under the "Command Parameters" sections enter the following command
+   sudo yum install telnet -y
+6-Scroll down and choose your instance manually
+7- Click "Run" at the bottom
+8- Open your EC2 instance and verify the telnet service is installed
+
+
+               
+                Uninstall telnet on your EC2 instance
+
+Follow the same process above and just replace the command with the following
+
+    sudo yum remove telnet -y
+

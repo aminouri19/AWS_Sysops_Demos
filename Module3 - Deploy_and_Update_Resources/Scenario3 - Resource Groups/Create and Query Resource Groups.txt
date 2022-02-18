@@ -1,0 +1,13 @@
+Create Resource Groups
+
+1- Open AWS Resource Groups
+2- Click "Create Resource Group"
+3- Select tag based
+4- Under Resource Types, select "AWS:EC2:Instance"
+5- In Tags enter "Department:IT" and click preview group resources
+6- Provide a group name of "IT-Servers" and create group
+7- Repeat the steps for Region and call the group "Servers-in-Asia"
+8- Query the resources in the "IT Servers" RG
+	aws resource-groups list-group-resources --group-name IT-Servers
+9- Query the resources in the "Servers-in-Asia" RG
+	aws resource-groups list-group-resources --group-name Servers-in-Asia

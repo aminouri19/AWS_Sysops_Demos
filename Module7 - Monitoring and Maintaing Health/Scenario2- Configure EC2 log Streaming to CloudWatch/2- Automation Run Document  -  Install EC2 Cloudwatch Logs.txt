@@ -1,0 +1,29 @@
+Create Custom SSM Run Document to Install EC2 Cloudwatch Logs
+
+1-	Open SSM, select documents from the left panel
+2-	Select the “Owned by me ” tab and click “Create Document”
+3-	Select Command or session
+4-	Give document a name (e.g. Amin-Install-EC2-Cloudwatch-Logs)
+5-	Scroll down to Content tab
+6-	Select Yaml
+7-	Edit Default text to following to setup a webserver
+
+---
+schemaVersion: "2.2"
+description: "Install EC2 Cloudwatch Logs on Amazon Linux2"
+parameters:
+mainSteps:
+- action: "aws:runShellScript"
+  name: "EC2CloudwatchLogsSetup"
+  inputs:
+    runCommand:
+    - "sudo yum update -y"
+    - "sudo yum install -y awslogs"
+    - "bash"
+    - "sudo echo [plugins] > /etc/awslogs/awscli.conf"
+    - "sudo echo cwlogs=cwlogs >> /etc/awslogs/awscli.conf"
+    - "sudo echo [default] >> /etc/awslogs/awscli.conf"
+    - "sudo echo region=us-west-2 >> /etc/awslogs/awscli.conf"
+    - "sudo systemctl start awslogsd"
+    - "sudo systemctl enable awslogsd.service"
+

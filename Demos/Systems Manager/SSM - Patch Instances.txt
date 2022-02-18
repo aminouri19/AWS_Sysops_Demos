@@ -1,0 +1,11 @@
+                         Patch your EC2 instance
+
+1- Open SSM
+2- Under instances and Nodes, select "Patch manager" link
+3- If you want to patch an instance select "Patch Now"
+4- Select "Patch and Install" in the patching operation
+5- Select "Reboot if needed"
+6- Select "Patch all instances"
+7- Click "Patch Now"
+
+To customize patching create patch baselines

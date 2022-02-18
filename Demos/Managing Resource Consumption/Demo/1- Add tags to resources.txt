@@ -1,0 +1,20 @@
+Add tags to resources
+
+1- On the lefthand side of the EC2 console click "Tags"
+2- Select 4 instances a tag them as the following
+3- Key: Department     Value:IT
+
+This means all of these instances belong to the "IT" department
+Select the rest of the instances and tag them for the "HR" department
+
+1- Create 3 new ec2 instances
+2- open the command prompt and start tagging the instances as follows
+
+	* Name: Server1 - Department: IT - Region: America
+	* Name: Server2 - Department: IT - Region: Asia
+	* Name: Server3 - Department: HR - Region: Asia
+
+aws ec2 create-tags --resources <Server1 instance id> <Server2 instance id> --tags Key=Department,Value=IT
+aws ec2 create-tags --resources <Server2 instance id> <Server3 instance id> --tags Key=Region,Value=Asia
+aws ec2 create-tags --resources <Server1 instance id> Key=Region,Value=America
+aws ec2 create-tags --resources <Server3 instance id> Key=Department,Value=HR

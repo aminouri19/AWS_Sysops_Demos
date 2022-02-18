@@ -1,0 +1,19 @@
+1- The following create-tags command adds two tags for an AMI and an instance.
+
+aws ec2 create-tags \
+    --resources ami-1a2b3c4d i-1234567890abcdef0 \
+    --tags Key=Webserver,Value=production   Key=stack,Value=project1
+
+------------------------------------------------------------------------------
+
+2- The following command can query a RG and show the resources
+
+aws resource-groups list-group-resources --group-name SSM_Managed
+
+-------------------------------------------------------------
+3- Create EC2 instance and tag at the same time
+
+aws ec2 run-instances --image-id ami-abc12345 --count 1 \
+--instance-type t2.micro --key-name MyKeyPair \
+--subnet-id subnet-6e7f829e \
+--tag-specifications 'ResourceType=instance,Tags=[{Key=webserver,Value=production}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]' 

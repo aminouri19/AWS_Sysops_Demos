@@ -1,0 +1,15 @@
+Redirect httpd Access Logs to CloudWatch Logs
+
+1- On the EC2 Instance open the /etc/awslogs/awslogs.conf
+2- At the bottom of the file paste the following and save
+
+[/var/logs/httpd/access_log]
+datetime_format = %b %d %H:%M:%S
+file = /var/log/httpd/access_log
+buffer_duration = 5000
+log_stream_name = {instance_id}
+initial_position = start_of_file
+log_group_name = /var/log/httpd/access_logs
+
+3- Restart the service
+*	sudo service awslogsd restart

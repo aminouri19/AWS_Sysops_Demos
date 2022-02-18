@@ -1,0 +1,31 @@
+Create Custom Automation Document
+
+1-	Open SSM and click Automation
+2-	Click Execute Automation and click create Document
+3-	Give it a name and move down to step1
+4-	Under Action Type click “Create Cloud Formation Stack”
+5-	Provide a Step name and move down and provide a stack name
+6-	In the value section paste the following cloud formation code to install a new instance
+
+*	For California use the following
+
+Resources:
+  Ec2Instance: 
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: us-west-1b
+      ImageId: ami-091150e2a0192933c
+      InstanceType: t2.micro
+
+*	For Oregon use the following
+
+Resources:
+  Ec2Instance: 
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: us-west-2a
+      ImageId: ami-0d608465670dfa77b
+      InstanceType: t2.micro
+
+7-	Click Create Automation
+8-	Now execute the automation to run this script

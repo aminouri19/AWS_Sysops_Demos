@@ -1,0 +1,32 @@
+Resources:
+  Ec2Instance: 
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: us-west-1b
+      ImageId: ami-091150e2a0192933c
+      InstanceType: t2.micro
+      KeyName: !Ref SSHKey
+      SecurityGroups:
+       - !Ref SG1
+
+# EC2 security group named SG1
+  SG1:
+     Type: AWS::EC2::SecurityGroup
+     Properties:
+       GroupDescription: Enable SSH Access
+       SecurityGroupIngress:
+       - CidrIp: 0.0.0.0/0
+         FromPort: 22
+         IpProtocol: TCP
+         ToPort: 22
+  
+# An elastic IP Address for our instance
+  EIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref Ec2Instance
+
+Parameters:
+  SSHKey:
+    Type: AWS::EC2::KeyPair::KeyName
+      

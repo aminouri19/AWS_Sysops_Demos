@@ -1,0 +1,11 @@
+Install Cloudwatch Agent Using SSM Run
+
+1- Open SSM 
+2- Under Node Management, click "Run Command"
+3- In the "Command Document" windows serach for and select "AWS-RunShellScript"
+4- Under targets choose your instances
+5- Under "Command Parameters" enter the following command
+*	sudo yum install amazon-cloudwatch-agent -y
+6- click run
+
+Tip: The role attached to the instance must have "CloudWatchAgentServerPolicy" attached to send metrics to cloudwatch.

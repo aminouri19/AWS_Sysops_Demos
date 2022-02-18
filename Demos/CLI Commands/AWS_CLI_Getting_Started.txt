@@ -1,0 +1,73 @@
+AWS S3 CLI Demo
+
+Install AWS CLI
+AWS Cli will allow you to run AWS commands, inside your command prompt or terminal.
+https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
+
+Run AWS Configure
+This command will accept your Access Key and Secret Access Key as input, to communicate with AWS services
+--------------
+aws configure
+
+
+List all buckets
+----------------
+aws s3 ls
+
+
+Create a new bucket
+--------------------
+aws s3 mb s3://<Bucket Name>  --region us-west-1
+
+
+Upload a file to S3 bucket
+--------------------------
+aws s3 cp <filename> s3://<Bucket Name>
+
+
+Remove an S3 bucket
+------------------------
+aws s3 rb s3://<Bucket Name>
+
+
+Start and stop an AWS EC2 instance
+--------------------------------------
+aws ec2 start-instances --instance-id <InstanceID> --output json
+example: aws ec2 start-instances --instance-id i-0bf371990899e8473 --output json
+
+aws ec2 stop-instances --instance-id <InstanceID> --output json
+example: aws ec2 stop-instances --instance-id i-0bf371990899e8473 --output json
+
+
+View configuration of all EC2 instances in the region
+-------------------------------------------------------
+aws ec2 describe-instances
+
+
+Limit results using –query option
+----------------------------------
+aws ec2 describe-instances --query Reservations[].Instances[].Tags
+aws ec2 describe-instances --query Reservations[].Instances[].InstanceId
+aws ec2 describe-instances --query Reservations[].Instances[].State.Name
+
+
+Limiting results using –filter option
+----------------------------------------
+aws ec2 describe-instances --filter "Name=platform,Values=windows"
+
+
+Combining --query and --filter
+-----------------------------
+aws ec2 describe-instances --filter "Name=platform,Values=windows" --query Reservations[].Instances[].InstanceId
+
+
+Using dry run to check permission
+----------------------------------
+aws ec2 describe-instances --filter "Name=platform,Values=windows" --query Reservations[].Instances[].InstanceId --dry-run
+
+
+Using the table output option
+------------------------------
+aws ec2 describe-instances --filter "Name=platform,Values=windows"
+aws ec2 describe-instances --filter "Name=platform,Values=windows" --output table
+aws ec2 describe-instances --filter "Name=platform,Values=windows" --output text

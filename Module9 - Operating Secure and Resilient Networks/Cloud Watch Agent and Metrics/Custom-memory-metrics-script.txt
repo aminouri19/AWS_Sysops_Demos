@@ -1,0 +1,5 @@
+#!/bin/bash
+MemFree=$(cat /proc/meminfo | grep MemFree | awk -F" " '{print $2}')
+MemFree2=$(free -m | awk 'NR==2{printf "%.2f\t", $3*100/$2}')
+aws cloudwatch put-metric-data --metric-name Free-Memory --dimensions instance=i-02539b80849833ca8 --namespace "Custom" --value $MemFree
+aws cloudwatch put-metric-data --metric-name Free-Memory2 --dimensions instance=i-02539b80849833ca8 --namespace "Custom" --value $MemFree2

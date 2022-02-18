@@ -1,0 +1,6 @@
+              Create an EC2 instance using CLI commands
+
+aws ec2 run-instances --image-id <imageid> --count 1 --instance-type <Instance Type> --key-name <Key Name> --security-group-ids <Security Group ID> --subnet-id <Subnet ID>
+
+example:
+aws ec2 run-instances --image-id ami-0f3a15fc18df9c6e4 --count 1 --instance-type t2.micro --key-name Ncalifornia-Key --security-group-ids sg-02d1f61ff0e8c114e --subnet-id subnet-ddcd3687

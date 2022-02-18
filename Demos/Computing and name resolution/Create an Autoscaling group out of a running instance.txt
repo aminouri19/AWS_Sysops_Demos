@@ -1,0 +1,7 @@
+            Create an Autoscaling Group Using a Running Instance
+
+Example:
+aws autoscaling create-auto-scaling-group --auto-scaling-group-name my-asg-from-instance --instance-id i-0e69cc3f05f825f4f --min-size 1 --max-size 2 --desired-capacity 2
+  
+Ref:
+https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-from-instance.html

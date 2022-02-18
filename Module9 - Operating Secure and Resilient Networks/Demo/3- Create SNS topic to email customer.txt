@@ -1,0 +1,10 @@
+Create SNS topic to email customer
+
+1- Open SNS service
+2- Select Create Topic
+3- Select Standard
+4- Name "Email-Me"
+5- Create Subscription
+6- Select "Email" as protocol
+7- Add email in the endpoint box
+8- Confirm subscription after receiving email

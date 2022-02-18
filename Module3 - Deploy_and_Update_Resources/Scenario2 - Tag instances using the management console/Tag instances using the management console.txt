@@ -1,0 +1,11 @@
+Tag instances using the management console
+
+1- Open AWS Management Console
+2- Search for resource groups
+3- select tag editor
+4- select region and resource type
+5- hit "search reources" button
+6- Select all resources
+7- Click "Manage tags of selected resources" button
+8- Add "Department" under key and add "IT" under value to add this tag to all instances
+ 

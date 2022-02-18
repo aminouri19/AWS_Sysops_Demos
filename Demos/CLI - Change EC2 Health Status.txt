@@ -1,0 +1,6 @@
+                         Change EC2 Health Status
+
+aws autoscaling set-instance-health --instance-id <InstanceId> --health-status <Health Status>
+
+Example
+aws autoscaling set-instance-health --instance-id i-00536e24ea4f758db --health-status Unhealthy

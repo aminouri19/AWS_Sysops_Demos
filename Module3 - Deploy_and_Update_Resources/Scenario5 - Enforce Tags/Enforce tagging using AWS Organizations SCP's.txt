@@ -1,0 +1,3 @@
+Enforce tagging using AWS Organizations SCP's
+
+https://aws.amazon.com/blogs/aws-cost-management/cost-allocation-blog-series-3-enforce-and-validate-aws-resource-tags/

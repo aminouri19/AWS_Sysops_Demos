@@ -1,0 +1,13 @@
+Create Cloudwatch Alarms
+
+1- Open Cloud watch Alarms
+2- Hit Create Alarm
+3- Click "Select Metric"
+4- Select EC2 --> Per-Instance Metrics --> <Server-name> CPU Utilization
+5- Over a period of a minute for average cpu utilization, select greater than 50
+6- When in alarm, select the SNS topic to email you
+7- Name the alarm and save
+8- use the following command to put the process under pressure
+   * for i in 1 2 3 4; do while : ; do : ; done & done
+9- Use the "top" command to view the current running processing and the amount of CPU being utilized.
+10- Make sure you receive the email after a minute

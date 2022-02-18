@@ -1,0 +1,130 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: AWS ElastiCache Demo
+
+Parameters:
+
+  NetworkStackName:
+    Description: Active CloudFormation stack containing VPC resources
+    Type: String
+    MinLength: 1
+    MaxLength: 255
+    AllowedPattern: "^[a-zA-Z][-a-zA-Z0-9]*$"
+
+  ClusterName:
+    Description: Custom name of the cluster. 
+    Type: String
+    AllowedPattern: "^[a-zA-Z][-a-zA-Z0-9]*$"
+
+  CacheNodeType:
+    Description: Cache node instance class
+    Type: String
+    Default: cache.t2.micro
+    ConstraintDescription: Node instance class not supported
+    
+  CacheEngine:
+    Description: The underlying cache engine, either Redis or Memcached
+    Type: String
+    Default: memcached
+    ConstraintDescription: Node instance class not supported
+    AllowedValues:
+      - redis
+      - memcached
+
+  CacheNodeCount:
+    Description: Number of nodes in the cluster. Only used with memcached engine, for redis this value will be set to 1.
+    Type: Number
+    MinValue: 1
+    MaxValue: 15
+    ConstraintDescription: Node count must be between 1 and 15
+    Default: 1
+
+  AutoMinorVersionUpgrade:
+    Description: Whether or not minor version upgrades to the cache engine should be applied automatically during the maintenance window.
+    Type: String
+    Default: true
+    AllowedValues:
+      - true
+      - false
+
+Conditions:
+
+  IsRedis: !Equals [ !Ref CacheEngine, redis]
+
+Resources:
+
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: ElastiCache Security Group
+      SecurityGroupIngress:
+       - CidrIp: 0.0.0.0/0
+         FromPort: 6379
+         IpProtocol: TCP
+         ToPort: 6379
+       - CidrIp: 0.0.0.0/0
+         FromPort: 11211
+         IpProtocol: TCP
+         ToPort: 11211
+
+  SubnetGroup:
+    Type: AWS::ElastiCache::SubnetGroup
+    Properties:
+      Description: Cache Subnet Group
+      SubnetIds:
+        - subnet-ddcd3687
+        - subnet-5d4be43b
+
+  ElastiCacheCluster:
+    Type: AWS::ElastiCache::CacheCluster
+    Properties:
+      AutoMinorVersionUpgrade: !Ref AutoMinorVersionUpgrade
+      Engine: !Ref CacheEngine
+      CacheNodeType: !Ref CacheNodeType
+      ClusterName : !Ref ClusterName
+      NumCacheNodes: !If [ IsRedis, 1, !Ref CacheNodeCount]
+      CacheSubnetGroupName: !Ref SubnetGroup
+      VpcSecurityGroupIds:
+        - !GetAtt SecurityGroup.GroupId
+      Tags:
+        - Key: Name
+          Value: !Ref AWS::StackName
+
+Outputs:
+
+  ElastiCacheStackName:
+    Description: ElastiCache Stack Name
+    Value: !Ref AWS::StackName
+    Export:
+      Name: !Sub ${AWS::StackName}-ElastiCacheName
+
+  ElastiCacheClusterArn:
+    Description: ElastiCache Cluster Arn
+    Value: !Sub arn:aws:elasticache:${AWS::Region}:${AWS::AccountId}:cluster/${ElastiCacheCluster}
+    Export:
+      Name: !Sub ${AWS::StackName}-ElastiCacheClusterArn
+
+  ElastiCacheClusterId:
+    Description: ElastiCache Cluster ID
+    Value: !Ref ElastiCacheCluster
+    Export:
+      Name: !Sub ${AWS::StackName}-ElastiCacheClusterID
+
+  ElastiCacheEngine:
+    Description: ElastiCache engine
+    Value: !Ref CacheEngine
+    Export:
+      Name: !Sub ${AWS::StackName}-ElastiCacheEngine
+
+  ElastiCacheAddress:
+    Description: ElastiCache endpoint address
+    Value: !If [ IsRedis, !GetAtt ElastiCacheCluster.RedisEndpoint.Address, !GetAtt ElastiCacheCluster.ConfigurationEndpoint.Address]
+    Export:
+      Name: !Sub ${AWS::StackName}-ElastiCacheAddress
+
+  ElastiCachePort:
+    Description: ElastiCache port
+    Value: !If [ IsRedis, 6379, 11211]
+    Export:
+      Name: !Sub ${AWS::StackName}-ElastiCachePort

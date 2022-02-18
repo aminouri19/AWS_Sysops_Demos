@@ -1,0 +1,18 @@
+1- Create AWS Role
+2- Attach Cloudwatchfullaccess to the role
+3- Attach role to EC2 instance
+4- Login to ec2 instance
+5- Run the following commands
+   - Update OS:         sudo yum update -y
+   - Install awslogs:   sudo yum install -y awslogs
+   - Specify files logged in cloudwath: /etc/awslogs/awslogs.conf
+   - Specify the region the logs will be saved: /etc/awslogs/awscli.conf to 
+   - Start the service: sudo systemctl start awslogsd
+   - Make sure service remains active even after reboot: sudo chkconfig awslogs on
+   - Enable service:    sudo systemctl enable awslogsd.service
+6- Open cloudwatch
+7- Select logs and then log group
+8- Search for /var/log/messages
+
+
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/QuickStartEC2Instance.html

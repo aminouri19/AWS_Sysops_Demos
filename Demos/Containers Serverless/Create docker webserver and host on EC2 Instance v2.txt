@@ -1,0 +1,40 @@
+1- Launch EC2 instance
+2- Update your instance 
+   sudo yum update -y
+3- Install Docker
+   sudo amazon-linux-extras install docker
+4- Start the service
+   sudo service docker start
+5-Add the ec2-user to the docker group so you can execute Docker commands without using sudo
+   sudo usermod -a -G docker ec2-user
+6-Verify that the ec2-user can run Docker commands without sudo
+   docker info
+7-Create a file called Dockerfile
+   touch Dockerfile
+8-Edit the docker file using the following code
+
+#Use Centos as base image
+FROM centos:latest
+
+# Install Apache web server
+RUN yum install httpd -y
+
+# Create the index.html in the same path as Dockerfile to copy to container
+COPY index.html /var/www/html/
+
+#Run Apache in the forground
+CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
+
+EXPOSE 80
+
+
+9- Build the Docker image from your Dockerfile.
+docker build -t webserver:v1 .
+
+10-Run docker images to verify that the image was created correctly.
+docker images 
+
+11-Run the newly built image on port 80
+docker run -t -i -p 80:80 webserver:v1
+
+12-Paste the public IP address to your browser to view the web content

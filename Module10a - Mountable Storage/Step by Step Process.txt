@@ -1,0 +1,15 @@
+EC2 EFS share setup step by step
+
+1- Create a security group named EC2-EFS-SG
+2- Create two EC2 instances using this SG
+   Each EC2 instance should be in a different AZ
+3- Create an EFS share
+4- run the following command on the ec2 instances
+   sudo yum install -y amazon-efs-utils
+5- create a folder named /efs (Created in root - mkdir /efs)
+6- Select an Amazon EFS filesystem and click "view details"
+7- Click "Attach"
+8- Run the following command to mount the filesystem to the /efs folder
+   sudo mount -t efs -o tls fs-28173a31:/ /efs (fs-28173a31:/ will be different
+   on different machines)
+9- In the EFS security group open NFS access to the EC2 security groups

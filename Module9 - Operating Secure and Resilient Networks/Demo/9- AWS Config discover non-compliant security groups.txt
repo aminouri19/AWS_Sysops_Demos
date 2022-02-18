@@ -1,0 +1,11 @@
+AWS Config discover non-compliant security groups
+
+1- Open AWS config
+2- Click on rules
+3- Click "Add Rule"
+4- Select "Add AWS Managed Rules"
+5- In the find rules box type "ssh"
+6- Select "restricted-ssh" and click next
+7- Provide a name and click next
+8- Click Add Rule
+9- In the dashboard find this rule and view non compiant security groups

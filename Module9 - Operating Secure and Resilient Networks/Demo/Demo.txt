@@ -1,0 +1,24 @@
+Chapter 9 demo
+
+1- Create an EC2 instance
+2- Make sure it has cloud watch agent installed
+3- Create SNS topic to email you
+4- Create custom metric for memory
+5- View cpu metrics under Monitor tab
+6- Configure Cloudwatch alarms to send an email using SNS
+7- Run stress utility to trigger cpu alarm
+8- Create a dashboard to view stats
+9- Enable detailed monitoring
+10- Install Cloud watch log agent for ec2 insatnce
+11- Configure EC2 instance and Cloudwatch to monitor EC2 logs
+12- Create Cross account Cross Region dashboard to view metrics from other regions
+13- Filter EC2 instance logs for specific data points
+14- Use cloudwatch logs insights and create visualizations
+15- Create alarms based on filtered info
+16- Create a cloud trail scenario to investigate a failed login
+17- AWS config scenario to check non compliant security groups
+18- AWS Config monitor configuartion change and get notified
+20- Create dashboard and visualize compliance
+21- Show Guard Duty
+
+

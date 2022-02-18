@@ -1,0 +1,8 @@
+View All AWS Resources
+
+1- Open AWS Config
+2- Click on resources link
+
+Note:	All discovered resources are visible
+
+3- Filter based on resource type to view the resources.
